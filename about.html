@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="https://kit.fontawesome.com/8739a21fcd.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/8739a21fcd.js"
+      crossorigin="anonymous"
+    ></script>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -12,304 +15,439 @@
       crossorigin="anonymous"
     />
     <!-- minify -->
-<link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
-<!-- latest -->
-<link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
-<!-- core style only -->
-<link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link
+      href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css"
+      rel="stylesheet"
+    />
+    <!-- latest -->
+    <link
+      href="https://unpkg.com/nes.css@latest/css/nes.min.css"
+      rel="stylesheet"
+    />
+    <!-- core style only -->
+    <link
+      href="https://unpkg.com/nes.css/css/nes-core.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Press+Start+2P"
+      rel="stylesheet"
+    />
     <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Monoton&family=Orbitron:wght@400..900&family=Press+Start+2P&family=VT323&display=swap");
-        .press-start-2p-regular {
-          font-family: "Press Start 2P", system-ui;
-          font-weight: 400;
-          font-style: normal;
-        }
-        .monoton-regular {
-          font-family: "Monoton", sans-serif;
-          font-weight: 400;
-          font-style: normal;
-        }
-        .orbitron-regular {
-          font-family: "Orbitron", sans-serif;
-          font-optical-sizing: auto;
-          font-weight: 500;
-          font-style: normal;
-        }
-        .vt323-regular {
-          font-family: "VT323", monospace;
-          font-weight: 400;
-          font-style: normal;
-        }
-  
-        .coin {
-          position: absolute;
+      @import url("https://fonts.googleapis.com/css2?family=Monoton&family=Orbitron:wght@400..900&family=Press+Start+2P&family=VT323&display=swap");
+      .press-start-2p-regular {
+        font-family: "Press Start 2P", system-ui;
+        font-weight: 400;
+        font-style: normal;
+      }
+      .monoton-regular {
+        font-family: "Monoton", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+      .orbitron-regular {
+        font-family: "Orbitron", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+      }
+      .vt323-regular {
+        font-family: "VT323", monospace;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      .coin {
+        position: absolute;
+        top: -50px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        height: 150px;
+        background-image: url("assets/image/coin.gif"); /* Replace with your coin image URL */
+        background-size: cover;
+        display: none;
+      }
+      @keyframes fall {
+        0% {
           top: -50px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 150px;
-          height: 150px;
-          background-image: url("assets/image/coin.gif"); /* Replace with your coin image URL */
-          background-size: cover;
-          display: none;
         }
-        @keyframes fall {
-          0% {
-            top: -50px;
-          }
-          100% {
-            top: calc(80vh - 50px);
-          }
+        100% {
+          top: calc(80vh - 50px);
         }
-        .modal-fullscreen {
-          width: 100%;
-          height: 100%;
-          margin: 0;
-          padding: 0;
-          max-width: none;
-        }
-        .modal-content {
-          height: 100%;
-          background-color: black;
-        }
-        .easter-egg {
-          display: none;
-          position: fixed;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background-color: white;
-          padding: 20px;
-          border: 2px solid black;
-          z-index: 1000;
-        }
-      </style>
-
-</head>
-<body style="text-align: center;">
+      }
+      .modal-fullscreen {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        max-width: none;
+      }
+      .modal-content {
+        height: 100%;
+        background-color: black;
+      }
+      .easter-egg {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border: 2px solid black;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+  <body style="text-align: center">
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
-              <i class="fa-solid fa-dungeon" style="font-size: large;"></i>        
-            </a>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNavDropdown"
-              aria-controls="navbarNavDropdown"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav ms-auto">
-                  <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                    </li>
-                <li class="nav-item dropdown">
-                  <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    Games
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" onclick="dropCoin(event, 'snake.html')" href="#">Snake</a></li>
-                    <li><a class="dropdown-item" onclick="dropCoinInModal(event, 'space-invaders.html')" href="#">Space invaders</a></li>
-                    <li><a class="dropdown-item" onclick="dropCoin(event, '#')" href="#">Pac-man</a></li>
-                  </ul>
-                </li>
-                
-                <li class="nav-item">
-                  <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="about.html">About</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </header>
-      
-      <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card-group">
-                    <div class="card">
-                        <img src="assets/image/space-invaders.png" class="card-img-topx m-2" style="background-color: black;" alt="...">
-                      <div class="card-body">
-                        <h5 class="card-title">Snake</h5>
-                        <img src="assets/image/insert-coin1.jpg" onclick="dropCoinInModal(event, 'snake.html')" alt="space invaders" style="width: 50px; height: 50px;">
-                      </div>
-                      <div class="card-footer">                        
-                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#tutorialModal">
-                        Open Tutorial
-                    </button>                   
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+            <i class="fa-solid fa-dungeon" style="font-size: large"></i>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Games
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      onclick="dropCoin(event, 'snake.html')"
+                      href="#"
+                      >Snake</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      onclick="dropCoinInModal(event, 'space-invaders.html')"
+                      href="#"
+                      >Space invaders</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      onclick="dropCoin(event, '#')"
+                      href="#"
+                      >Pac-man</a
+                    >
+                  </li>
+                </ul>
+              </li>
 
-                    <!-- Tutorial Modal -->
-                    <div class="modal fade" id="tutorialModal" tabindex="-1" aria-labelledby="tutorialModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-fullscreen">
-                            <div class="modal-content" style="background-color: black;">
-                                <div class="modal-body d-flex justify-content-center align-items-center">
-                                    <div class="tutorial-content">                                       
-                                
-                                    <div class="nes-container is-dark with-title tutorial-content w-100">
-                                        <p class="title"> Tutorial </p>
-                                        <ul class="vt323-regular nes-list is-disc">
-                                            <li>Use the arrow keys to move your spaceship left and right.</li>
-                                            <li>Press the spacebar to shoot at the incoming aliens.</li>
-                                            <li>Avoid getting hit by the aliens' projectiles.</li>
-                                            <li>Destroy all the aliens to advance to the next level.</li>
-                                            <li>Good luck and have fun!</li>
-                                        </ul>
-                                      </div>
-                                      <div>
-                                        <button type="button" class="nes-btn is-primary mt-5" data-bs-dismiss="modal">Close</button>
-                                      </div>
-                                </div></div>
-                            </div>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <div class="card-group">
+            <div class="card">
+              <img
+                src="assets/image/space-invaders.png"
+                class="card-img-topx m-2"
+                style="background-color: black"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Snake</h5>
+                <img
+                  src="assets/image/insert-coin1.jpg"
+                  onclick="dropCoinInModal(event, 'snake.html')"
+                  alt="space invaders"
+                  style="width: 50px; height: 50px"
+                />
+              </div>
+              <div class="card-footer">
+                <button
+                  type="button"
+                  class="btn"
+                  data-bs-toggle="modal"
+                  data-bs-target="#tutorialModal"
+                >
+                  Open Tutorial
+                </button>
+
+                <!-- Tutorial Modal -->
+                <div
+                  class="modal fade"
+                  id="tutorialModal"
+                  tabindex="-1"
+                  aria-labelledby="tutorialModalLabel"
+                  aria-hidden="true"
+                >
+                  <div
+                    class="modal-dialog modal-dialog-centered modal-fullscreen"
+                  >
+                    <div class="modal-content" style="background-color: black">
+                      <div
+                        class="modal-body d-flex justify-content-center align-items-center"
+                      >
+                        <div class="tutorial-content">
+                          <div
+                            class="nes-container is-dark with-title tutorial-content w-100"
+                          >
+                            <p class="title">Tutorial</p>
+                            <ul class="vt323-regular nes-list is-disc">
+                              <li>
+                                Use the arrow keys to move your spaceship left
+                                and right.
+                              </li>
+                              <li>
+                                Press the spacebar to shoot at the incoming
+                                aliens.
+                              </li>
+                              <li>
+                                Avoid getting hit by the aliens' projectiles.
+                              </li>
+                              <li>
+                                Destroy all the aliens to advance to the next
+                                level.
+                              </li>
+                              <li>Good luck and have fun!</li>
+                            </ul>
+                          </div>
+                          <div>
+                            <button
+                              type="button"
+                              class="nes-btn is-primary mt-5"
+                              data-bs-dismiss="modal"
+                            >
+                              Close
+                            </button>
+                          </div>
                         </div>
-                    </div>
-                      </div>
-                    </div>
-                    <div class="card">
-                      <img src="assets/image/space-invaders.png" class="card-img-topx m-2" style="background-color: black;" alt="...">
-                      <div class="card-body">
-                        <h5 class="card-title">Space invaders</h5>
-                        <img src="assets/image/insert-coin.jpg" onclick="dropCoinInModal(event, 'space-invaders.html')" alt="space invaders" style="width: 50px; height: 50px;">
-                      </div>
-                      <div class="card-footer">
-                        <small class="text-body-secondary">Last updated 3 mins ago</small>
-                      </div>
-                    </div>
-                    <div class="card">
-                        <img src="assets/image/space-invaders.png" class="card-img-topx m-2" style="background-color: black;" alt="...">
-                      <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                      </div>
-                      <div class="card-footer">
-                        <small class="text-body-secondary">Last updated 3 mins ago</small>
                       </div>
                     </div>
                   </div>
-            </div>
-        </div>
-        <div class="row justify-content-center mt-5">
-            <div class="col-md-6">
-                <div class="coin" id="coin"></div>
-            </div>
-            <div class="col-md-6">
-                <h1>Fonts</h1>
-                <p class="press-start-2p-regular">"Insert Coin to Continue"</p>
-                <p class="monoton-regular">"Insert Coin to Continue"</p>
-                <p class="orbitron-regular">"Insert Coin to Continue"</p>
-                <p class="vt323-regular">"Insert Coin to Continue"</p>
-            </div>
-        </div>
-      </div>
-      
-    
-
-    <footer class="bg-body-tertiary py-4 mt-5">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-md-6">
-              <div class="row">
-                <div class="col-md-6">
-                  <h5>Navigation</h5>
-                  <ul class="list-unstyled">
-                    <li><a href="index.html" class="text-decoration-none">Home</a></li>
-                    <li><a href="about.html" class="text-decoration-none">About</a></li>
-                    <li><a href="contact.html" class="text-decoration-none">Contact</a></li>
-                  </ul>
                 </div>
-                <div class="col-md-6">
-                  <h5>Follow Us</h5>
-                  <ul class="list-inline">
-                    <li class="list-inline-item"><a href="https://www.instagram.com" class="text-decoration-none"><i class="fab fa-instagram fa-2x"></i></a></li>
-                    <li class="list-inline-item"><a href="https://www.facebook.com" class="text-decoration-none"><i class="fab fa-facebook fa-2x"></i></a></li>
-                    <li class="list-inline-item"><a href="https://www.youtube.com" class="text-decoration-none"><i class="fab fa-youtube fa-2x"></i></a></li>
-                    <li class="list-inline-item"><a href="https://www.twitter.com" class="text-decoration-none"><i class="fab fa-twitter fa-2x"></i></a></li>
-                  </ul>
-                </div>               
+              </div>
+            </div>
+            <div class="card">
+              <img
+                src="assets/image/space-invaders.png"
+                class="card-img-topx m-2"
+                style="background-color: black"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Space invaders</h5>
+                <img
+                  src="assets/image/insert-coin.jpg"
+                  onclick="dropCoinInModal(event, 'space-invaders.html')"
+                  alt="space invaders"
+                  style="width: 50px; height: 50px"
+                />
+              </div>
+              <div class="card-footer">
+                <small class="text-body-secondary"
+                  >Last updated 3 mins ago</small
+                >
+              </div>
+            </div>
+            <div class="card">
+              <img
+                src="assets/image/space-invaders.png"
+                class="card-img-topx m-2"
+                style="background-color: black"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This is a wider card with supporting text below as a natural
+                  lead-in to additional content. This card has even longer
+                  content than the first to show that equal height action.
+                </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-body-secondary"
+                  >Last updated 3 mins ago</small
+                >
               </div>
             </div>
           </div>
-          <div class="row justify-content-center mt-3">
-            <div class="col-md-6 text-center">
-              <p>&copy; 2024 Arcade Games. All rights reserved.</p>
-              <p><a href="privacy.html" class="text-decoration-none">Privacy Policy</a> | <a href="terms.html" class="text-decoration-none">Terms of Use</a></p>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+          <div class="coin" id="coin"></div>
+        </div>
+        <div class="col-md-6">
+          <h1>Fonts</h1>
+          <p class="press-start-2p-regular">"Insert Coin to Continue"</p>
+          <p class="monoton-regular">"Insert Coin to Continue"</p>
+          <p class="orbitron-regular">"Insert Coin to Continue"</p>
+          <p class="vt323-regular">"Insert Coin to Continue"</p>
+        </div>
+      </div>
+    </div>
+    <footer class="bg-body-tertiary py-4 mt-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-6">
+                <h5>Navigation</h5>
+                <ul class="list-unstyled">
+                  <li>
+                    <a href="index.html" class="text-decoration-none">Home</a>
+                  </li>
+                  <li>
+                    <a href="about.html" class="text-decoration-none">About</a>
+                  </li>
+                  <li>
+                    <a href="contact.html" class="text-decoration-none"
+                      >Contact</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h5>Follow Us</h5>
+                <ul class="list-inline">
+                  <li class="list-inline-item">
+                    <a
+                      href="https://www.instagram.com"
+                      class="text-decoration-none"
+                      ><i class="fab fa-instagram fa-2x"></i
+                    ></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a
+                      href="https://www.facebook.com"
+                      class="text-decoration-none"
+                      ><i class="fab fa-facebook fa-2x"></i
+                    ></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a
+                      href="https://www.youtube.com"
+                      class="text-decoration-none"
+                      ><i class="fab fa-youtube fa-2x"></i
+                    ></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a
+                      href="https://www.twitter.com"
+                      class="text-decoration-none"
+                      ><i class="fab fa-twitter fa-2x"></i
+                    ></a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-      </footer>
-  <!-- Modal for space invaders-->
-  <div
-  class="modal fade"
-  id="coinModal"
-  tabindex="-1"
-  aria-labelledby="coinModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered modal-fullscreen">
-    <div class="modal-content">
-      <div class="modal-body d-flex justify-content-center align-items-center">
+        <div class="row justify-content-center mt-3">
+          <div class="col-md-6 text-center">
+            <p>&copy; 2024 Arcade Games. All rights reserved.</p>
+            <p>
+              <a href="privacy.html" class="text-decoration-none"
+                >Privacy Policy</a
+              >
+              |
+              <a href="terms.html" class="text-decoration-none">Terms of Use</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Modal for space invaders-->
+    <div
+      class="modal fade"
+      id="coinModal"
+      tabindex="-1"
+      aria-labelledby="coinModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+        <div class="modal-content">
+          <div
+            class="modal-body d-flex justify-content-center align-items-center"
+          >
             <img
-            src="assets/image/press-enter.webp"
-            alt="Press Enter"
-            class="img-fluid"
+              src="assets/image/press-enter.webp"
+              alt="Press Enter"
+              class="img-fluid"
             />
             <div class="coin" id="modalCoin"></div>
+          </div>
         </div>
-        </div>
+      </div>
     </div>
-    </div>
-      <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"
-      ></script>
-      <script>
-        /**
-         * Space Invaders
-         */
-        function dropCoin(event, url) {
-          event.preventDefault();
-          const coin = document.getElementById("coin");
-          coin.style.display = "block";
-          coin.style.animation = "fall 4s linear forwards";
-          setTimeout(() => {
-            coin.style.display = "none";
-            window.location.href = url;
-          }, 4000); // Delay navigation for 4 seconds to match the animation duration
-        }
-  
-        function dropCoinInModal(event, url) {
-          event.preventDefault();
-          const modalCoin = document.getElementById("modalCoin");
-          const coinModal = new bootstrap.Modal(
-            document.getElementById("coinModal")
-          );
-          coinModal.show();
-          modalCoin.style.display = "block";
-          modalCoin.style.animation = "fall 4s linear forwards";
-          setTimeout(() => {
-            modalCoin.style.display = "none";
-            coinModal.hide();
-            window.location.href = url;
-          }, 4000); // Delay navigation for 4 seconds to match the animation duration
-        }
-  
-        
-      </script>
-    </body>
-    </html>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      /**
+       * Space Invaders
+       */
+      function dropCoin(event, url) {
+        event.preventDefault();
+        const coin = document.getElementById("coin");
+        coin.style.display = "block";
+        coin.style.animation = "fall 4s linear forwards";
+        setTimeout(() => {
+          coin.style.display = "none";
+          window.location.href = url;
+        }, 4000); // Delay navigation for 4 seconds to match the animation duration
+      }
+
+      function dropCoinInModal(event, url) {
+        event.preventDefault();
+        const modalCoin = document.getElementById("modalCoin");
+        const coinModal = new bootstrap.Modal(
+          document.getElementById("coinModal")
+        );
+        coinModal.show();
+        modalCoin.style.display = "block";
+        modalCoin.style.animation = "fall 4s linear forwards";
+        setTimeout(() => {
+          modalCoin.style.display = "none";
+          coinModal.hide();
+          window.location.href = url;
+        }, 4000); // Delay navigation for 4 seconds to match the animation duration
+      }
+    </script>
+  </body>
+</html>
