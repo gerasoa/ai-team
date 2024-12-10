@@ -11,6 +11,14 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <!-- minify -->
+<link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+<!-- latest -->
+<link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+<!-- core style only -->
+<link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Monoton&family=Orbitron:wght@400..900&family=Press+Start+2P&family=VT323&display=swap");
         .press-start-2p-regular {
@@ -133,18 +141,7 @@
       
       <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="coin" id="coin"></div>
-            </div>
-            <div class="col-md-6">
-                <h1>Fonts</h1>
-                <p class="press-start-2p-regular">"Insert Coin to Continue"</p>
-                <p class="monoton-regular">"Insert Coin to Continue"</p>
-                <p class="orbitron-regular">"Insert Coin to Continue"</p>
-                <p class="vt323-regular">"Insert Coin to Continue"</p>
-            </div>
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="card-group">
                     <div class="card">
                         <img src="assets/image/space-invaders.png" class="card-img-topx m-2" style="background-color: black;" alt="...">
@@ -155,26 +152,29 @@
                       <div class="card-footer">                        
                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#tutorialModal">
                         Open Tutorial
-                    </button>
+                    </button>                   
 
                     <!-- Tutorial Modal -->
                     <div class="modal fade" id="tutorialModal" tabindex="-1" aria-labelledby="tutorialModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-fullscreen">
                             <div class="modal-content" style="background-color: black;">
                                 <div class="modal-body d-flex justify-content-center align-items-center">
-                                    <div class="tutorial-content">
-                                        <h2 class="orbitron-regular" style="color: white;">Space Invaders Tutorial</h2>
-                                        <p class="vt323-regular" style="color: white;">Welcome to Space Invaders! Follow these steps to play:</p>
-                                        <ol class="vt323-regular" style="color: white; text-align: left;">
+                                    <div class="tutorial-content">                                       
+                                
+                                    <div class="nes-container is-dark with-title tutorial-content w-100">
+                                        <p class="title"> Tutorial </p>
+                                        <ul class="vt323-regular nes-list is-disc">
                                             <li>Use the arrow keys to move your spaceship left and right.</li>
                                             <li>Press the spacebar to shoot at the incoming aliens.</li>
                                             <li>Avoid getting hit by the aliens' projectiles.</li>
                                             <li>Destroy all the aliens to advance to the next level.</li>
                                             <li>Good luck and have fun!</li>
-                                        </ol>
-                                    </div>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close Tutorial</button>
-                                </div>
+                                        </ul>
+                                      </div>
+                                      <div>
+                                        <button type="button" class="nes-btn is-primary mt-5" data-bs-dismiss="modal">Close</button>
+                                      </div>
+                                </div></div>
                             </div>
                         </div>
                     </div>
@@ -203,9 +203,20 @@
                   </div>
             </div>
         </div>
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="coin" id="coin"></div>
+            </div>
+            <div class="col-md-6">
+                <h1>Fonts</h1>
+                <p class="press-start-2p-regular">"Insert Coin to Continue"</p>
+                <p class="monoton-regular">"Insert Coin to Continue"</p>
+                <p class="orbitron-regular">"Insert Coin to Continue"</p>
+                <p class="vt323-regular">"Insert Coin to Continue"</p>
+            </div>
+        </div>
       </div>
-      <div>        
-    </div>
+      
     
 
     <footer class="bg-body-tertiary py-4 mt-5">
