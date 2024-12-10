@@ -1,225 +1,329 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://kit.fontawesome.com/8739a21fcd.js" crossorigin="anonymous"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <title>Document</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Monoton&family=Orbitron:wght@400..900&family=Press+Start+2P&family=VT323&display=swap');
-    .press-start-2p-regular {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/8739a21fcd.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Monoton&family=Orbitron:wght@400..900&family=Press+Start+2P&family=VT323&display=swap");
+      .press-start-2p-regular {
         font-family: "Press Start 2P", system-ui;
         font-weight: 400;
         font-style: normal;
-    }
-    .monoton-regular {
+      }
+      .monoton-regular {
         font-family: "Monoton", sans-serif;
         font-weight: 400;
         font-style: normal;
-    }
-    .orbitron-regular {
+      }
+      .orbitron-regular {
         font-family: "Orbitron", sans-serif;
         font-optical-sizing: auto;
         font-weight: 500;
         font-style: normal;
-    }
-    .vt323-regular {
+      }
+      .vt323-regular {
         font-family: "VT323", monospace;
         font-weight: 400;
         font-style: normal;
-    }   
+      }
 
-    .coin {
-      position: absolute;
-      top: -50px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 150px;
-      height: 150px;
-      background-image: url('assets/image/coin.gif'); /* Replace with your coin image URL */
-      background-size: cover;
-      display: none;
-    }
-    @keyframes fall {
-        0% { top: -50px; }
-        100% { top: calc(80vh - 50px); }
-    }
-    .modal-fullscreen {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      max-width: none;
-    }
-    .modal-content {
-      height: 100%;
-      background-color: black;
-    }
-    .easter-egg {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: white;
-      padding: 20px;
-      border: 2px solid black;
-      z-index: 1000;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <div class="press-start-2p-regular">
-            Arcade Games
+      .coin {
+        position: absolute;
+        top: -50px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        height: 150px;
+        background-image: url("assets/image/coin.gif"); /* Replace with your coin image URL */
+        background-size: cover;
+        display: none;
+      }
+      @keyframes fall {
+        0% {
+          top: -50px;
+        }
+        100% {
+          top: calc(80vh - 50px);
+        }
+      }
+      .modal-fullscreen {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        max-width: none;
+      }
+      .modal-content {
+        height: 100%;
+        background-color: black;
+      }
+      .easter-egg {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border: 2px solid black;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <div class="press-start-2p-regular">Arcade</div>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Games
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      onclick="dropCoin(event, 'snake.html')"
+                      href="#"
+                      >Snake</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      onclick="dropCoinInModal(event, 'space-invaders.html')"
+                      href="#"
+                      >Space invaders</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      onclick="dropCoin(event, '#')"
+                      href="#"
+                      >Pac-man</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+              </li>
+            </ul>
           </div>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Games
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" onclick="dropCoin(event, 'snake.html')" href="#">Snake</a></li>
-                <li><a class="dropdown-item" onclick="dropCoinInModal(event, 'space-invaders.html')" href="#">Space invaders</a></li>
-                <li><a class="dropdown-item" onclick="dropCoin(event, '#')" href="#">Pac-man</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-          </ul>
         </div>
-      </div>
-    </nav>
-  </header>
+      </nav>
+    </header>
 
-  <main>
-    <div class="container mt-5">
+    <main>
+      <div class="container mt-5">
         <!-- <button class="btn btn-primary" onclick="dropCoin()">Drop Coin</button> -->
         <div class="coin" id="coin"></div>
-        <i id="egg" class="fas fa-egg" style="font-size: 100px; color: #6c757d;"></i>
+        <i
+          id="egg"
+          class="fas fa-egg"
+          style="font-size: 100px; color: #6c757d"
+        ></i>
         <p>click 5x</p>
-    </div>
+      </div>
 
-    <div class="easter-egg" id="easterEgg"  style="border: 2px solid blueviolet;">
+      <div
+        class="easter-egg"
+        id="easterEgg"
+        style="border: 2px solid blueviolet"
+      >
         <h2>Congratulations!</h2>
         <p>You found the easter egg!</p>
       </div>
-    
-  </main>
+    </main>
 
-  <footer class="bg-body-tertiary py-4 fixed-bottom">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-6">
-          <div class="row">
-            <div class="col-md-6">
-              <h5>Navigation</h5>
-              <ul class="list-unstyled">
-                <li><a href="index.html" class="text-decoration-none">Home</a></li>
-                <li><a href="about.html" class="text-decoration-none">About</a></li>
-                <li><a href="contact.html" class="text-decoration-none">Contact</a></li>
-              </ul>
-            </div>
-            <div class="col-md-6">
-              <h5>Follow Us</h5>
-              <ul class="list-inline">
-                <li class="list-inline-item"><a href="https://www.instagram.com" class="text-decoration-none"><i class="fab fa-instagram"></i> </a></li>
-                <li class="list-inline-item"><a href="https://www.facebook.com" class="text-decoration-none"><i class="fab fa-facebook"></i> </a></li>
-                <li class="list-inline-item"><a href="https://www.youtube.com" class="text-decoration-none"><i class="fab fa-youtube"></i> </a></li>
-                <li class="list-inline-item"><a href="https://www.twitter.com" class="text-decoration-none"><i class="fab fa-twitter"></i>  X</a></li>
-              </ul>
+    <footer class="bg-body-tertiary text-center py-4 fixed-bottom">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-6">
+                <h5>Navigation</h5>
+                <ul class="list-unstyled">
+                  <li>
+                    <a href="index.html" class="text-decoration-none">Home</a>
+                  </li>
+                  <li>
+                    <a href="about.html" class="text-decoration-none">About</a>
+                  </li>
+                  <li>
+                    <a href="contact.html" class="text-decoration-none"
+                      >Contact</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h5>Follow Us</h5>
+                <ul class="list-inline">
+                  <li class="list-inline-item">
+                    <a
+                      href="https://www.instagram.com"
+                      class="text-decoration-none"
+                      ><i class="fab fa-instagram"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a
+                      href="https://www.facebook.com"
+                      class="text-decoration-none"
+                      ><i class="fab fa-facebook"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a
+                      href="https://www.youtube.com"
+                      class="text-decoration-none"
+                      ><i class="fab fa-youtube"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a
+                      href="https://www.twitter.com"
+                      class="text-decoration-none"
+                      ><i class="fab fa-twitter"></i> X</a
+                    >
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </footer>
-  
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/8739a21fcd.js" crossorigin="anonymous"></script>
+    </footer>
 
-  <!-- Modal for space invaders-->
-  <div class="modal fade" id="coinModal" tabindex="-1" aria-labelledby="coinModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-fullscreen">
-      <div class="modal-content">
-        <div class="modal-body d-flex justify-content-center align-items-center">
-            <img src="assets/image/press-enter.webp" alt="Press Enter" class="img-fluid">
-          <div class="coin" id="modalCoin"></div>
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/8739a21fcd.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Modal for space invaders-->
+    <div
+      class="modal fade"
+      id="coinModal"
+      tabindex="-1"
+      aria-labelledby="coinModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+        <div class="modal-content">
+          <div
+            class="modal-body d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="assets/image/press-enter.webp"
+              alt="Press Enter"
+              class="img-fluid"
+            />
+            <div class="coin" id="modalCoin"></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script>
- 
-    /**
- * Space Invaders
-*/
-function dropCoin(event, url) {
-    event.preventDefault();
-    const coin = document.getElementById('coin');
-    coin.style.display = 'block';
-    coin.style.animation = 'fall 4s linear forwards';
-    setTimeout(() => {
-      coin.style.display = 'none';
-      window.location.href = url;
-    }, 4000); // Delay navigation for 4 seconds to match the animation duration
-  }
-
-  function dropCoinInModal(event, url) {
-    event.preventDefault();
-    const modalCoin = document.getElementById('modalCoin');
-    const coinModal = new bootstrap.Modal(document.getElementById('coinModal'));
-    coinModal.show();
-    modalCoin.style.display = 'block';
-    modalCoin.style.animation = 'fall 4s linear forwards';
-    setTimeout(() => {
-      modalCoin.style.display = 'none';
-      coinModal.hide();
-      window.location.href = url;
-    }, 4000); // Delay navigation for 4 seconds to match the animation duration
-  }
-  
-  function showEasterEgg() {
-      const easterEgg = document.getElementById('easterEgg');
-      easterEgg.style.display = 'block';
-      setTimeout(() => {
-        easterEgg.style.display = 'none';
-      }, 3000); // Hide the easter egg after 3 seconds
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      let clickCount = 0;
-      const egg = document.getElementById('egg');
-
-      egg.addEventListener('click', () => {
-        clickCount++;
-        if (clickCount === 5) {
-          showEasterEgg();
-          clickCount = 0; // Reset the click count
-        }
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      /**
+       * Space Invaders
+       */
+      function dropCoin(event, url) {
+        event.preventDefault();
+        const coin = document.getElementById("coin");
+        coin.style.display = "block";
+        coin.style.animation = "fall 4s linear forwards";
         setTimeout(() => {
-          clickCount = 0; // Reset the click count if not clicked within 1 second
-        }, 1000);
+          coin.style.display = "none";
+          window.location.href = url;
+        }, 4000); // Delay navigation for 4 seconds to match the animation duration
+      }
+
+      function dropCoinInModal(event, url) {
+        event.preventDefault();
+        const modalCoin = document.getElementById("modalCoin");
+        const coinModal = new bootstrap.Modal(
+          document.getElementById("coinModal")
+        );
+        coinModal.show();
+        modalCoin.style.display = "block";
+        modalCoin.style.animation = "fall 4s linear forwards";
+        setTimeout(() => {
+          modalCoin.style.display = "none";
+          coinModal.hide();
+          window.location.href = url;
+        }, 4000); // Delay navigation for 4 seconds to match the animation duration
+      }
+
+      function showEasterEgg() {
+        const easterEgg = document.getElementById("easterEgg");
+        easterEgg.style.display = "block";
+        setTimeout(() => {
+          easterEgg.style.display = "none";
+        }, 3000); // Hide the easter egg after 3 seconds
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        let clickCount = 0;
+        const egg = document.getElementById("egg");
+
+        egg.addEventListener("click", () => {
+          clickCount++;
+          if (clickCount === 5) {
+            showEasterEgg();
+            clickCount = 0; // Reset the click count
+          }
+          setTimeout(() => {
+            clickCount = 0; // Reset the click count if not clicked within 1 second
+          }, 1000);
+        });
       });
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>
